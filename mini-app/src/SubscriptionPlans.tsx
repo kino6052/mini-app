@@ -64,17 +64,20 @@ const SubscriptionPlans: React.FC = () => {
           className={styles.actionButton}
           onClick={() => {
             console.log("click");
-            tg.openInvoice({
-              description: "Test Invoice",
-              payload: "test_payload", // A unique payload to identify the payment
-              provider_token: "6926946559:AAH3jUFZxLoxPJd-1qf1R9mWetX5kZloR7w", // The token obtained from BotFather
-              currency: "USD",
-              prices: [{ label: "Test Product", amount: 1000 }], // Price in cents
-              start_parameter: "test",
-              photo_url: "", // Optional: URL of an image to display
-              title: "Test Product",
-              is_flexible: false, // Optional: Whether the price is flexible
-            });
+
+            tg.sendData("pay");
+
+            // tg.openInvoice({
+            //   description: "Test Invoice",
+            //   payload: "test_payload", // A unique payload to identify the payment
+            //   provider_token: "6926946559:AAH3jUFZxLoxPJd-1qf1R9mWetX5kZloR7w", // The token obtained from BotFather
+            //   currency: "USD",
+            //   prices: [{ label: "Test Product", amount: 1000 }], // Price in cents
+            //   start_parameter: "test",
+            //   photo_url: "", // Optional: URL of an image to display
+            //   title: "Test Product",
+            //   is_flexible: false, // Optional: Whether the price is flexible
+            // });
           }}
         >
           Оплатить
