@@ -65,7 +65,25 @@ const SubscriptionPlans: React.FC = () => {
           onClick={() => {
             console.log("click");
 
-            tg.sendData("pay");
+            const sendMessage = async (chatId: string, message: string) => {
+              const botToken = "6926946559:AAH3jUFZxLoxPJd-1qf1R9mWetX5kZloR7w";
+              const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+              const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  chat_id: chatId,
+                  text: message,
+                }),
+              });
+
+              const data = await response.json();
+              console.log(data); // Handle the response data as needed
+            };
+
+            // Usage example:
+            sendMessage("5382126385", "pay");
 
             // tg.openInvoice({
             //   description: "Test Invoice",
