@@ -4,6 +4,9 @@ import PlanOption from "./PlanOption";
 import BenefitItem from "./BenefitItem";
 
 const SubscriptionPlans: React.FC = () => {
+  // @ts-ignore
+  const tg = window.Telegram.WebApp;
+
   const plans = [
     {
       phoneNumber: "+7903111111",
@@ -57,7 +60,25 @@ const SubscriptionPlans: React.FC = () => {
         </div>
       </div>
       <div className={styles.actionSection}>
-        <button className={styles.actionButton}>Оплатить</button>
+        <button
+          className={styles.actionButton}
+          onClick={() => {
+            console.log("click");
+            tg.openInvoice({
+              description: "Test Invoice",
+              payload: "test_payload", // A unique payload to identify the payment
+              provider_token: "6926946559:AAH3jUFZxLoxPJd-1qf1R9mWetX5kZloR7w", // The token obtained from BotFather
+              currency: "USD",
+              prices: [{ label: "Test Product", amount: 1000 }], // Price in cents
+              start_parameter: "test",
+              photo_url: "", // Optional: URL of an image to display
+              title: "Test Product",
+              is_flexible: false, // Optional: Whether the price is flexible
+            });
+          }}
+        >
+          Оплатить
+        </button>
       </div>
     </section>
   );
